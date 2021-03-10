@@ -12,7 +12,8 @@ def get_args():
                                                    "DELETE"], default="GET", help="The method that you use for sending data.")
     parser.add_argument('-H', '--header', action='append')
     parser.add_argument('-Q', '--queries', action='append')
-    parser.add_argument('-d', '--data')
+    parser.add_argument('-D', '--data')
+    parser.add_argument('--json')
     parser.add_argument('--file')
     parser.add_argument('--timeout', type=int)
 
