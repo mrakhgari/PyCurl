@@ -11,3 +11,17 @@ class InvalidUrl(Error):
 
     def __init__(self, url):
         super().__init__(f"{url} is not valid")
+
+
+class FileNotFound(Error):
+    """Raised when file not found"""
+
+    def __init__(self, file_path):
+        super().__init__(f"Wrong file or file path, check the {file_path}")
+
+
+class TimeOut(Error):
+    """Raised when request timeouted"""
+
+    def __init__(self, timeout):
+        super().__init__(f"Time out ({timeout} s)")

@@ -1,7 +1,7 @@
 import argparse
 import validators
 from request import Request
-from exceptions import InvalidUrl
+from exceptions import InvalidUrl, FileNotFound
 import logging
 
 
@@ -67,7 +67,7 @@ def parse_file(file: str, headers: dict):
     try:
         f = open(file_path, "rb")
     except:
-        raise InvalidUrl("ee")
+        raise FileNotFound(file_path)
     if headers.get("Content-Type") is None:
         headers["Content-Type"] = "application/octet-stream"
     return {file_name: f}
@@ -76,6 +76,7 @@ def parse_file(file: str, headers: dict):
 def get_request(args: argparse.Namespace):
     url = args.url[0]
     method = args.method
+    timeout = args.timeout
     headers = parse_headers(args.header)
     queries = parse_queries(args.queries)
     data = parse_data(args.data, headers)
@@ -84,4 +85,4 @@ def get_request(args: argparse.Namespace):
     if not validators.url(url):
         raise InvalidUrl(url)
 
-    return Request(url, method, headers=headers, queries=queries, data=data, json=json, file=file)
+    return Request(url, method, headers=headers, queries=queries, data=data, json=json, file=file, timeout=timeout)

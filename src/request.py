@@ -1,8 +1,9 @@
 import requests
+from exceptions import TimeOut
 
 
 class Request:
-    def __init__(self, url, method='GET', headers=None, queries=None, data=None, json=None, file=None):
+    def __init__(self, url, method='GET', headers=None, queries=None, data=None, json=None, file=None, timeout=None):
         '''
             Args:
                 :param url: Base URL for the request. (e.g. http://www.example.com)
@@ -16,6 +17,10 @@ class Request:
         self.data = data
         self.json = json
         self.file = file
+        self.timeout = timeout
 
     def make_request(self):
-        return requests.request(self.method, self.url, headers=self.headers, params=self.queries, data=self.data, json=self.json, files=self.file)
+        try:
+            return requests.request(self.method, self.url, headers=self.headers, params=self.queries, data=self.data, json=self.json, files=self.file, timeout=self.timeout)
+        except requests.exceptions.Timeout:
+            raise TimeOut(self.timeout)

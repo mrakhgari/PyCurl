@@ -15,7 +15,7 @@ def get_args():
     parser.add_argument('-D', '--data')
     parser.add_argument('--json')
     parser.add_argument('--file')
-    parser.add_argument('--timeout', type=int)
+    parser.add_argument('--timeout', type=float)
 
     args = parser.parse_args()
 
