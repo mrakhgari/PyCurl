@@ -3,6 +3,7 @@ from argsmapper import get_request
 from exceptions import Error
 import coloredlogs, logging
 
+import requests
 logging.basicConfig(
     level=logging.DEBUG,
 )

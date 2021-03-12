@@ -7,7 +7,7 @@ import logging
 
 def parse_headers(headers_list: list):
     if headers_list is None:
-        return None
+        return {}
     headers_list = ','.join(headers_list)
     headers_dict = {}
     for header in headers_list.split(','):
@@ -48,7 +48,7 @@ def parse_data(data: str, headers: dict):
 
 def parse_json(j: str, headers: dict):
     if j is None:
-        return
+        return None
     import json
     try:
         json.loads(j)
@@ -60,6 +60,19 @@ def parse_json(j: str, headers: dict):
     return j
 
 
+def parse_file(file: str, headers: dict):
+    if file is None:
+        return None
+    file_name, file_path = map(str, file.split(":"))
+    try:
+        f = open(file_path, "rb")
+    except:
+        raise InvalidUrl("ee")
+    if headers.get("Content-Type") is None:
+        headers["Content-Type"] = "application/octet-stream"
+    return {file_name: f}
+
+
 def get_request(args: argparse.Namespace):
     url = args.url[0]
     method = args.method
@@ -67,7 +80,8 @@ def get_request(args: argparse.Namespace):
     queries = parse_queries(args.queries)
     data = parse_data(args.data, headers)
     json = parse_json(args.json, headers)
+    file = parse_file(args.file, headers)
     if not validators.url(url):
         raise InvalidUrl(url)
 
-    return Request(url, method, headers=headers, queries=queries, data=data, json=json)
+    return Request(url, method, headers=headers, queries=queries, data=data, json=json, file=file)
