@@ -139,3 +139,6 @@ dmypy.json
 
 # Local History for Visual Studio Code
 .history/ 
+
+# downloaded file
+.data/
