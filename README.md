@@ -16,6 +16,7 @@ PyCurl is a simple command-line tool (like [curl](https://github.com/curl/curl.g
 ## Usage
 You must run this code in cmd, like:
     
+    cd .\src\ 
     python.exe .\main.py "http://google.com" 
 For more examples look at [tests.txt](./test/tests.txt) or read the specifications in Farsi at [http-client.pdf](spec/http-client.pdf).
 
