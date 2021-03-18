@@ -1,3 +1,7 @@
+"""
+This module contains the set of Requests' exceptions.
+"""
+
 
 class Error(Exception):
     """Base class for other exceptions"""
