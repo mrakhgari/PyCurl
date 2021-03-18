@@ -15,9 +15,16 @@ octet_header = "application/octet-stream"
 data_header = "application/x-www-form-urlencoded"
 
 content_type = "content-type"
+content_length = "content-length"
 
 ## warning 
 data_pattern_warning = f"DataPattern: Your provided information is not of type {data_header}"
 json_pattern_warning = f"JSONPattern: Your provided information is not of type {json_header}"
 query_pattern_warning = "QueryWarning:The {key} is exists, we override it by {value}"
 header_pattern_warning = "HeaderWarning:The {key} is exists, we override it by {value}"
+
+## 
+requested_url = "Requested URL:"
+status_code = "Status Code:"
+header_seperator = "---------------------HEADER---------------------"
+body_seperator   = "----------------------BODY----------------------"
