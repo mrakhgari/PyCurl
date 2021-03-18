@@ -51,7 +51,8 @@ def parse_json(j: str, headers: dict):
     import json
     try:
         json.loads(j)
-    except ValueError:
+        return json.loads(j)
+    except ValueError as e:
         logging.warning(json_pattern_warning)
     if headers.get(content_type) is None:
         headers[content_type] = json_header

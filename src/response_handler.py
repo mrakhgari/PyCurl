@@ -17,9 +17,9 @@ def print_method(response: requests.models.Response):
 def print_status(response: requests.models.Response):
     logger.info(status_code)
     if response.ok:
-        logger.warning(f"{response.status_code} : {response.request.method}")
+        logger.warning(f"{response.status_code} : {response.request.method} : {response.reason}")
     else:
-        logger.critical(f"{response.status_code} : {response.request.method}")
+        logger.critical(f"{response.status_code} : {response.request.method} : {response.reason}")
 
 
 def print_header(response: requests.models.Response):
