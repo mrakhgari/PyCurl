@@ -1,0 +1,48 @@
+# invalid url 
+python.exe .\main.py blawblaw
+
+# simple GET
+python.exe .\main.py "http://google.com" 
+python.exe .\main.py "https://httpbin.org/get" -M GET
+
+# simple query with override
+python.exe .\main.py "https://httpbin.org/get" -M GET -Q "x1=y1&x2=y2&x1=y3"
+
+# simple query without override
+python.exe .\main.py "https://httpbin.org/get" -M GET -Q "x1=y1&x2=y2"
+
+# simple POST
+python.exe .\main.py "https://httpbin.org/post" -M POST
+
+# request with header
+python.exe .\main.py "https://httpbin.org/post" -M POST -H "h1:v1,h2:v2" --data "key1=val2&key2=val2" -H "h1:v3"
+
+# post with data valid type
+python.exe .\main.py "https://httpbin.org/post" -M POST --data "key1=val2&key2=val2"
+
+# post with data invalid type
+python.exe .\main.py "https://httpbin.org/post" -M POST --data "invalid type"
+
+# post with json invalid type
+python.exe .\main.py "https://httpbin.org/post" -M POST --json "invalid type"
+
+# post with json valid type
+python.exe .\main.py "https://httpbin.org/post" -M POST --json '{\"name\":\"reza\",\"family\":\"ziri\"}'
+
+# post with json valid type override header
+python.exe .\main.py "https://httpbin.org/post" -M POST --json '{\"name\":\"hadi\",\"last\": \"taba\"}' -H "content-type:application/text"
+
+# send file
+python.exe .\main.py "https://httpbin.org/post" -H "jey:3" -M POST --file "README.md:.\..\README.md" 
+
+# set timeout
+python.exe .\main.py "https://httpbin.org/post" -H "jey:3" -M POST --file "README.md:.\..\README.md"  --timeout 1.5
+
+# low timeout
+python.exe .\main.py "https://httpbin.org/post" -H "jey:3" -M POST --file "README.md:.\..\README.md"  --timeout 0.1
+
+# download image
+.\main.py "https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.net%20C/O%20https://placeholder.com/"
+
+# METHOD NOT ALLOWED
+python.exe .\main.py "https://httpbin.org/post" -M GET
