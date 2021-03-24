@@ -42,7 +42,7 @@ python.exe .\main.py "https://httpbin.org/post" -H "jey:3" -M POST --file "READM
 python.exe .\main.py "https://httpbin.org/post" -H "jey:3" -M POST --file "README.md:.\..\README.md"  --timeout 0.1
 
 # download image
-.\main.py "https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.net%20C/O%20https://placeholder.com/"
+python.exe .\main.py "https://via.placeholder.com/150/000000/FFFFFF/?text=IPaddress.net%20C/O%20https://placeholder.com/"
 
 # METHOD NOT ALLOWED
 python.exe .\main.py "https://httpbin.org/post" -M GET
