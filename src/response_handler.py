@@ -53,4 +53,5 @@ def handle_response(response: requests.models.Response):
     if (not is_downloadable_file(response)):
         print_body(response)
     else:
+        print("start downloading...")
         download_body(response)

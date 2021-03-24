@@ -38,6 +38,6 @@ class Request:
     def make_request(self):
         try:
             return requests.request(self.method, self.url, headers=self.headers, 
-                params=self.queries, data=self.data, json=self.json, files=self.file, timeout=self.timeout)
+                params=self.queries, data=self.data, json=self.json, files=self.file, timeout=self.timeout, stream=True)
         except requests.exceptions.Timeout:
             raise TimeOut(self.timeout)

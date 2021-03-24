@@ -15,8 +15,8 @@ def save_response_to_file_by_tqdm(path, response):
         total=total,
         unit='iB',
         unit_scale=True,
-        unit_divisor=1024,
+        unit_divisor=1,
     ) as bar:
-        for data in response.iter_content(chunk_size=1024):
+        for data in response.iter_content(chunk_size=1):
             size = file.write(data)
             bar.update(size)
