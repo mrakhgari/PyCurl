@@ -1,7 +1,7 @@
 import argparse
 import validators
 from request import Request
-from exceptions import InvalidUrl, FileNotFound
+from exceptions import InvalidUrl, FileNotFound, TwoDataType
 import logging
 from constants import *
 import json
@@ -71,6 +71,8 @@ def parse_file(file: str, headers: dict):
         headers[content_type] = octet_header
     return {file_name: f}
 
+def has_data_and_json(json, data):
+    return json is not None and data is not None 
 
 def get_request(args: argparse.Namespace):
     url = args.url[0]
@@ -83,6 +85,8 @@ def get_request(args: argparse.Namespace):
     queries = parse_queries(args.queries)
     data = parse_data(args.data, headers)
     json = parse_json(args.json, headers)
+    if has_data_and_json(json, data):
+        raise TwoDataType()
     file = parse_file(args.file, headers)
 
     return Request(url, method, headers=headers, queries=queries, data=data, json=json, file=file, timeout=timeout)

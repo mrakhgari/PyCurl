@@ -29,3 +29,8 @@ class TimeOut(Error):
 
     def __init__(self, timeout):
         super().__init__(f"Time out ({timeout} s)")
+
+class TwoDataType(Error):
+    ''' Raised when user used --json and --data flag together'''
+    def __init__(self):
+        super().__init__("You can not use --data and --json together")
