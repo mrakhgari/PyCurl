@@ -4,6 +4,7 @@ from request import Request
 from exceptions import InvalidUrl, FileNotFound
 import logging
 from constants import *
+import json
 
 
 def parse_headers(headers_list: list):
@@ -48,14 +49,13 @@ def parse_data(data: str, headers: dict):
 def parse_json(j: str, headers: dict):
     if j is None:
         return None
-    import json
+    if headers.get(content_type) is None:
+        headers[content_type] = json_header
     try:
         json.loads(j)
         return json.loads(j)
     except ValueError as e:
         logging.warning(json_pattern_warning)
-    if headers.get(content_type) is None:
-        headers[content_type] = json_header
     return j
 
 
