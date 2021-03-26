@@ -38,7 +38,7 @@ def parse_data(data: str, headers: dict):
     if data is None:
         return
     import re
-    query_string_pattern = r"(\w+=\w+&?)+"
+    query_string_pattern = r"(\w+=\w+)(&\w+=\w+)*"
     if not re.fullmatch(query_string_pattern, data):
         logging.warning(data_pattern_warning)
     if headers.get(content_type) is None:
